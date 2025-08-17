@@ -1,12 +1,24 @@
-import sys
-sys.stdin = open("sample_input.txt")
+# import sys
+# sys.stdin = open("sample_input.txt")
 for t in range(1, int(input())+1):
-    view1 = [*map(int, input().split())]
-    view2 = [*map(int, input().split())]
+    ax1, ay1, ax2, ay2 = map(int, input().split())
+    bx1, by1, bx2, by2 = map(int, input().split())
+    # 4번 : 안겹치는 경우
+    if (ax1 > bx2) or (bx1 > ax2) or (ay1 > by2) or (by1 > ay2):
+        print(f"#{t} 4")
+        continue
+    # 3번 : 겹치는 점    
+    # a 오른 b 왼 / a아래 b 위 / a 오른 b 왼
+    elif (ax2 == bx1 and ay2 == by1) or (ax2==bx1 and ay1== by2) or (ax1 == bx2 and ay1 == by2) or (ax1 == bx2 and ay2 == by1):
+        print(f"#{t} 3")
+        continue
+    # 2번 : 겹치는 선 
+    elif (ax2 == bx1) or (ay2 == by1) or (ax1 == bx2) or (ay1 == by2):
+        print(f"#{t} 2")
+        continue
+    else : 
+        print(f"#{t} 1")
+    
 
-    # 1번 : 겹칠 때
-    # 각 x좌표 y좌표 값들이 서로 범위 안에 있는지 확인
-    if (view2[0] < view1[0] < view2[2] and view2[1] < view1[1] < view2[3]) or (view1[0] > view2[0] and view1[1] > view2[1]):
 
-    # 2번 : 겹치는 선
-    #
+
