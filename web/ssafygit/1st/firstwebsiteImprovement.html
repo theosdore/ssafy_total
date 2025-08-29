@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The World Wide Web project</title>
+    <style>
+      html {
+            /* 1rem의 기준값을 16px로 설정 */
+            font-size: 8px;
+      }
+
+      .title-bg {
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      .title {
+        font-family: 'Arial Black', sans-serif;
+        font-size: 8rem;
+        font-weight: bold;
+        position: relative;
+        display: inline-block;
+        
+        /* 글자 속을 투명하게 만들어 아래 배경이 보이도록 함 */
+        color: transparent; 
+        -webkit-text-stroke: 1px black;
+        text-stroke: 1px black;
+
+        /* margin-top: 1rem;
+        margin-bottom: 1rem; */
+        
+      }
+
+      /* ::before는 타원형 배경 담당 */
+      .title::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -48%);
+        width: 180%;
+        height: 3em;
+        border-radius: 50%;
+        border: 1.6px solid rgb(189, 189, 189);
+        background-color: transparent;
+        z-index: -1; 
+      }
+
+      .main-statement{
+        text-align: center;
+        font-size: 1.4rem;
+        margin: 3rem;
+      }
+
+      .dts {
+        margin : 10rem
+      }
+
+      dt {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      dd {
+        margin-bottom: 8rem;
+        font-size: 1.6rem;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="title-bg">
+        <h1 class="title">World Wide Web</h1>
+      </div>
+      <p class="main-statement">
+        The WorldWideWeb (W3) is a wide-area
+        <a href="">hypermedia</a> information retrieval initiative aiming to
+        give universal access to a large universe of documents.
+      </p>
+    </header>
+    <div>
+      <p class="main-statement">
+        Everything there is online about W3 is linked directly or indirectly to
+        this document, including an <a href="">executive summary</a> of the
+        project, <a href="">Mailing lists</a>, <a href="">Policy</a>, November's
+        <a href="">W3 news</a>, <a href="">Frequently Asked Questions</a>.
+      </p>
+    </div>
+    <div class="dts">
+      <dl>
+        <dt><a href="">What's out there?</a></dt>
+        <dd>
+          Pointers to the world's online information, <a href="">subjects</a>,
+          <a href="">W3 servers</a>, etc.
+        </dd>
+        <dt><a href="">Help</a></dt>
+        <dd>on the browser you are using</dd>
+        <dt><a href="">Software Products</a></dt>
+        <dd>
+          A list of W3 project components and their current state. (e.g.
+          <a href="">Line Mode</a>, X11 <a href="">Viola</a>,
+          <a href="">NeXTStep</a>, <a href="">Servers</a>, <a href="">Tools</a>,
+          <a href="">Mail robot</a>, <a href="">Library</a>)
+        </dd>
+        <dt><a href="">Technical</a></dt>
+        <dd>Details of protocols, formats, program internals, etc.</dd>
+        <dt><a href="">Bibliography</a></dt>
+        <dd>Paper documentation on W3 and references.</dd>
+        <dt><a href="">People</a></dt>
+        <dd>A list of some people involved in the project.</dd>
+        <dt><a href="">History</a></dt>
+        <dd>A summary of the history of the project.</dd>
+        <dt><a href="">How can I help?</a></dt>
+        <dd>If you would like to support the web..</dd>
+        <dt><a href="">Getting code</a></dt>
+        <dd>Getting the code by <a href="">anonymous FTP</a>, etc.</dd>
+      </dl>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <style>
+            .container {
+                background-color: #F0F0F0;
+                padding: 20px;
+            }
+
+            .parent {
+                font-weight: bold;
+                border: black 1px solid;
+                margin-bottom: 20px;
+            }
+
+            .child {
+                color: red;
+                background-color:skyblue;
+                padding: 10px;
+            }
+
+            .grandchild {
+                font-style: italic;
+                border: dotted red ;
+            }
+        </style>
+    </head>
+    <body style = "font-family: sans-serif; font-weight: 16px; color: #333333;" >
+        <div class="container">
+            <div class="parent">
+                <h1>부모 요소</h1>
+                <p>부모 요소의 텍스트입니다</p>
+                    
+                <div  class="child">
+                    <h2>자식 요소</h2>
+                    <p>자식 요소의 텍스트입니다</p>
+                    <span class="grandchild">손자 요소의 텍스트입니다</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
