@@ -1,3 +1,5 @@
+import sys
+sys.stdin = open("ssafy_total\swea\stack_and_recursion2\input.txt")
 for t in range(1, 11):
     N = int(input())
     arr = list(input())
@@ -5,7 +7,7 @@ for t in range(1, 11):
     simbollist = []
     for word in arr:
         if word.isnumeric():
-            finallist.append(int(word))
+            finallist.append(word)
         else:
             if word == ")":
                 while simbollist[-1] != "(":
@@ -19,14 +21,5 @@ for t in range(1, 11):
                 simbollist.append(word)
     while simbollist:
         finallist.append(simbollist.pop())
-    finalnumstack = []
-    finalsymbolstack = []
-    for tempA in finallist:
-        if isinstance(tempA, int):
-            finalnumstack.append(tempA)
-        else:
-            if tempA == "*":
-                finalnumstack.append(finalnumstack.pop() * finalnumstack.pop())
-            elif tempA == "+":
-                finalnumstack.append(finalnumstack.pop() + finalnumstack.pop())
-    print(f"#{t}", finalnumstack[0])
+    print(f"#{t}", ''.join(finallist))
+

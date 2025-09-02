@@ -1,0 +1,20 @@
+5
+2 3
+WLL
+LLL
+3 2
+WL
+LL
+LW
+4 5
+LLLWW
+WWLLL
+LLLWL
+LWLLL
+1 4
+LWLLL
+4 1
+L
+W
+L
+L
