@@ -35,8 +35,4 @@ for t in range(1, 11):
                 finalnumstack.append(finalnumstack.pop() * finalnumstack.pop())
             elif tempA == "+":
                 finalnumstack.append(finalnumstack.pop() + finalnumstack.pop())
-<<<<<<< Updated upstream
     print(f"#{t}", finalnumstack[0])
-=======
-    print(f"#{t}", finalnumstack[0])
->>>>>>> Stashed changes
