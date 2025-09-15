@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
+=======
+import sys
+sys.stdin = open("SSAFY_TOTAL\swea\stack_and_recursion2\input.txt")
+
+>>>>>>> Stashed changes
 for t in range(1, 11):
     N = int(input())
     arr = list(input())
@@ -29,4 +35,8 @@ for t in range(1, 11):
                 finalnumstack.append(finalnumstack.pop() * finalnumstack.pop())
             elif tempA == "+":
                 finalnumstack.append(finalnumstack.pop() + finalnumstack.pop())
+<<<<<<< Updated upstream
     print(f"#{t}", finalnumstack[0])
+=======
+    print(f"#{t}", finalnumstack[0])
+>>>>>>> Stashed changes
