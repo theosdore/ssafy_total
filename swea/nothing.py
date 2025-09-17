@@ -1,1 +1,2 @@
-print(ord("A"))
+a = [0]*3*2
+print(a)
