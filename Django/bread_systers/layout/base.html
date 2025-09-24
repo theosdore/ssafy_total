@@ -6,6 +6,10 @@
   <title>Document</title>
 </head>
 <body>
+  <nav>
+    <a href="{% url 'bakeries:index' %}">Home</a>
+    <a href="{% url "bakeries:create" %}">생성하기</a>
+  </nav>
   <h1>빵집추천</h1>
   {% block content %}
   {% endblock content %}

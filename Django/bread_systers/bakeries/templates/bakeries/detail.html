@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>상세페이지</h2>
+    
+    <p>이름 : {{ bakery.name }}</p>
+    <p>평점 : {{ bakery.rating }}</p>
+    <p>주소 : {{ bakery.address }}</p>
+    <p>오픈시간 : {{ bakery.opening_time | date:"h:i A"}} ~ {{ bakery.closing_time | date:"h:i A"}}</p>
+{% endblock content %}

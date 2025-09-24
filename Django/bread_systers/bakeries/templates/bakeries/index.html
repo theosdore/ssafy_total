@@ -2,7 +2,10 @@
 {% block content %}
     <h2>메인페이지</h2>
     {% for bakery in bakeries %}
-        <p>이름 : {{ bakery.name }}</p>
+        <hr>
+        <p>이름 : <a href="{% url 'bakeries:detail' bakery.id %}">{{ bakery.name }}</a></p>
         <p>평점 : {{ bakery.rating }}</p>
+        
     {% endfor %}
+    <hr>
 {% endblock content %}

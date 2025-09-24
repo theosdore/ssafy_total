@@ -6,7 +6,6 @@ class Bakery(models.Model):
   name = models.CharField(max_length=20)
 
   # 주소
-  
   address = models.TextField()
 
   # 평점 (예: 0.0 ~ 5.0 범위 예상, 소수점 1자리까지)
