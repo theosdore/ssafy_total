@@ -10,7 +10,7 @@ class Comment(models.Model):
     ttabong = models.IntegerField() # 좋아요 수
     ZZal = models.CharField(blank = True, null = True) # 이미지 링크
     company_name = models.CharField() # 회사 이름
-    company_code = models.IntegerField() # 회사 코드
+    company_code = models.CharField(max_length=7) # 회사 코드
 
 
 class Analyst(models.Model):

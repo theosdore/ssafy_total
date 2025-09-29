@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-import time
-import datetime
-from .models import Comment
+from django.core.paginator import Paginator
+from django.contrib import messages
+from .models import Comment, Analyst
 
+import datetime
+import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -11,11 +13,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
-
-
-    
 # Create your views here.
 def index(request):
     return render(request, "crawlings/index.html")
@@ -23,27 +22,32 @@ def index(request):
 
 def crawling(request):
     company_name = request.GET.get('company_name')
-    result = fetch_visible_comments(company_name)
-    Comment.objects.bulk_create(result)
-    return redirect('crawlings:index') # 작업 현황을 보여주는 페이지로 이동
+    if company_name:
+        company_code, result = fetch_visible_comments(company_name)
+        if result:
+            if result == "error":
+                messages.warning(request, "해당 회사는 없습니다")
+                return redirect("crawlings:index")
+            else:
+                Comment.objects.bulk_create(result)
+        return redirect("crawlings:print_comment", company_code=company_code) # 작업 현황을 보여주는 페이지로 이동
+    else:
+        messages.warning(request, "검색어를 입력해주세요")
+        return redirect("crawlings:index") 
 
-
-def print_comment(request, company_code):
-    # 댓글 출력
-    # 분석 요약 출력
-    pass
-
-
-
-def fetch_visible_comments(company_name, limit=20, max_scroll=5):
+def find_codename(request):
+    company_name = request.GET.get('company_name')
     
+    if not company_name:
+        messages.warning(request, "검색어를 입력해주세요")
+        return redirect("crawlings:index") 
     # 크롬 드라이버 옵션
     chrome_options = Options()
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    # chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--headless=new")
 
     # 이전 폴더의 크롬 드라이버 경로
     service = Service("chromedriver-win64\\chromedriver.exe")
@@ -70,7 +74,76 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=5):
     time.sleep(1)
 
     # 3. 종목 코드 추출
-    WebDriverWait(driver, 15).until(EC.url_contains("/order"))
+    try:
+        WebDriverWait(driver, 4).until(EC.url_contains("/order"))
+    except TimeoutException:
+        driver.quit()
+        messages.warning(request, "해당 이름으로 저장된 회사는 없습니다")
+        return redirect("crawlings:index")
+    current_url = driver.current_url
+    stock_code = current_url.split("/")[
+        current_url.split("/").index("stocks") + 1
+    ]
+    return redirect("crawlings:print_comment", company_code=stock_code)
+
+
+
+def print_comment(request, company_code: str):
+    qs = Comment.objects.filter(company_code=company_code).order_by("-post_time")
+    
+    # 페이지네이션 (페이지 당 댓글 20개씩 출력)
+    paginator = Paginator(qs, 20)
+    page_obj = paginator.get_page(request.GET.get("page", 1))
+
+    company_name = qs.first().company_name if qs.exists() else ""
+
+    context = {
+        "company_code": company_code,
+        "company_name": company_name,
+        "page_obj": page_obj,
+    }
+    return render(request, "crawlings/print_comment.html", context)
+
+def fetch_visible_comments(company_name, limit=20, max_scroll=20):
+    
+    # 크롬 드라이버 옵션
+    chrome_options = Options()
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--headless=new")
+
+    # 이전 폴더의 크롬 드라이버 경로
+    service = Service("chromedriver-win64\\chromedriver.exe")
+
+
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    # 1. Toss 메인 접속
+    driver.get("https://www.tossinvest.com/")
+    time.sleep(1)
+
+    # 2. 회사명 검색
+    body = driver.find_element(By.TAG_NAME, "body")
+    body.send_keys("/")  # '/' 입력 → 검색창 열림
+    time.sleep(1)
+
+    search_input = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located(
+            (By.XPATH, "//input[@placeholder='검색어를 입력해주세요']")
+        )
+    )
+    search_input.send_keys(company_name)
+    search_input.send_keys(Keys.ENTER)
+    time.sleep(1)
+
+    # 3. 종목 코드 추출
+    try:
+        WebDriverWait(driver, 4).until(EC.url_contains("/order"))
+    except TimeoutException:
+        driver.quit()
+        return "TimeoutException", "error"
     current_url = driver.current_url
     stock_code = current_url.split("/")[
         current_url.split("/").index("stocks") + 1
@@ -86,13 +159,12 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=5):
     )
     #회사 이름, 회사코드
     companyName = ""
-    companyCode = ""
+    companyCode = stock_code
 
-    tempBlocks = driver.find_elements(
+    tempBlocks = driver.find_element(
         By.CSS_SELECTOR, "div._1sivumi0 span.tw-1r5dc8g0"
     )
-    companyName = tempBlocks[0].text.strip()
-    companyCode = tempBlocks[1].text.strip()
+    companyName = tempBlocks.text.strip()
 
     # 5. 블록 수집 (스크롤 반복하며 누적)
     last_height = driver.execute_script("return document.body.scrollHeight")
@@ -104,7 +176,7 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=5):
         {'name': 'nickname', 'selector': 'label.xdogm43 span.tw-1r5dc8g0', 'type': 'text', 'default' : ""},
         {'name': 'post_time', 'selector': 'time._1tvp9v40', 'type': 'attribute', 'attr': 'datetime', 'default' : ""},
         {'name': 'ttabong', 'selector': 'span.tw-1r5dc8g0._3z3wnf1', 'type': 'text', 'default' : "0"},
-        {'name': 'ZZal', 'selector': 'img', 'type': 'attribute', 'attr': 'src', 'default' : ""},
+        {'name': 'ZZal', 'selector': 'div.xdogm45 img', 'type': 'attribute', 'attr': 'src', 'default' : ""},
     ]
 
     # 최종 수집 데이터를 담을 리스트
@@ -168,5 +240,12 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=5):
     
     driver.quit()
     print("검색완료")
-    return all_comments_data
+    return (companyCode, all_comments_data)
 
+def delete_comment(request, id):
+    if request.method == 'POST':
+        comment = get_object_or_404(Comment, pk=id)
+        company_code = comment.company_code
+        comment.delete()
+
+    return redirect('crawlings:print_comment', company_code=company_code)
