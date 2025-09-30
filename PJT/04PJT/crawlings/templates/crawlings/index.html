@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% if messages %}
+    <script>
+    {% for message in messages %}
+        alert("{{ message }}");
+    {% endfor %}
+    </script>
+  {% endif %}
+  <h1>주식 댓글 분석기</h1>
+  <form class = "search" method = "get" style="display: inline-block;">
+    <label for="company_name" class = "label">회사 이름을 입력하세요:</label>
+    <input id = "company_name", name = "company_name", type = "text">
+    <button type="submit" formaction="{% url 'crawlings:crawling' %}"> 
+      댓글 최신화 및 검색 
+    </button>
+    <button  type="submit" formaction="{% url 'crawlings:find_codename' %}">
+      댓글 검색 
+    </button>
+  </form>
+
+</body>
+</html>
