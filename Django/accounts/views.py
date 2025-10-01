@@ -23,11 +23,16 @@ def signup(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect("bakeries:index")
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
+            nextUrl = request.GET.get('next')
             user = form.get_user()
             auth_login(request, user)
+            if nextUrl:
+                return redirect(nextUrl)
             return redirect("bakeries:index")
     else:
         form = AuthenticationForm()
@@ -37,3 +42,7 @@ def login(request):
     }
     return render(request, 'accounts/login.html', context)
 
+
+def logout(request):
+    auth_logout(request)
+    return redirect('bakeries:index')

@@ -4,6 +4,7 @@ app_name = "accounts"
 urlpatterns = [
     path("signup/", views.signup,name="signup"), # 원가입
     # login
-    path("login/", views.login,name="login"), # 원가입
+    path("login/", views.login,name="login"),
     # logout
+    path("logout/", views.logout, name="logout"),
 ]

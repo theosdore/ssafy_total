@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Article
 from .forms import ArticleForm
+from django.contrib.auth.decorators import login_required
 
 
 # 게시판 메인 페이지 (GET)
@@ -22,6 +23,7 @@ def index(request):
 
 # 생성 페이지 (GET)
 # 게시물 생성 (POST)
+@login_required
 def create(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)

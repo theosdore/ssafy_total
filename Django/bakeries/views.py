@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Bakery
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -43,6 +44,7 @@ def detail(request, id):
 
 # 1. 생성하기 페이지 보여주기 (GET)
 # 2. DB에 새로운 정보 저장 (POST)
+@login_required
 def create(request):
     if request.method == "POST":
         # request 에서 데이터 받아와서 DB에 저장

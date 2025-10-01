@@ -2,37 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a360611a-df73-4a13-842a-a7d6ca209bf2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ssafy_total.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Baekjoon/KKR/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Aiden.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/chromedriver-win64/LICENSE.chromedriver" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/chromedriver-win64/THIRD_PARTY_NOTICES.chromedriver" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/chromedriver-win64/chromedriver.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/migrations/0002_analyst.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/migrations/0003_alter_comment_company_code.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/templates/crawlings/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/templates/crawlings/print_comment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/crawlings/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/shineTH/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/shineTH/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/shineTH/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/shineTH/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PJT/04PJT/shineTH/shineTH/wsgi.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/swea/odds and ends/1486.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/articles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/articles/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/bakeries/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/bakeries/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Django/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/layout/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Django/layout/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +43,49 @@
       <recent name="C:\Users\SSAFY\Desktop\Aiden\ssafy_total\Baekjoon\KKR" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.1486">
+    <configuration name="1486" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ssafy_total" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swea/odds and ends" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swea/odds and ends/1486.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="20397" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ssafy_total" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swea/odds and ends" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swea/odds and ends/20397.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="treeTrunkAndBranch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ssafy_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -90,6 +109,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.1486" />
+        <item itemvalue="Python.20397" />
         <item itemvalue="Python.treeTrunkAndBranch" />
       </list>
     </recent_temporary>
@@ -115,5 +136,27 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/swea/odds and ends/1486.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/swea/odds and ends/1486.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/swea/odds and ends/1486.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
