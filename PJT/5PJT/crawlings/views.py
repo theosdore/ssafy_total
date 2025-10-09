@@ -84,6 +84,8 @@ def find_codename(request):
     stock_code = current_url.split("/")[
         current_url.split("/").index("stocks") + 1
     ]
+    
+    
     return redirect("crawlings:print_comment", company_code=stock_code)
 
 
@@ -112,7 +114,7 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=20):
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--headless=new")
+    # chrome_options.add_argument("--headless=new")
 
     # 이전 폴더의 크롬 드라이버 경로
     service = Service("chromedriver-win64\\chromedriver.exe")
@@ -162,7 +164,7 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=20):
     companyCode = stock_code
 
     tempBlocks = driver.find_element(
-        By.CSS_SELECTOR, "div._1sivumi0 span.tw-1r5dc8g0"
+        By.CSS_SELECTOR, "div._1sivumi0 span.tw4k-1r5dc8g0"
     )
     companyName = tempBlocks.text.strip()
 
@@ -171,11 +173,11 @@ def fetch_visible_comments(company_name, limit=20, max_scroll=20):
     
     # 수집할 데이터 목록
     scrape_map = [
-        {'name': 'content', 'selector': 'span.tw-1r5dc8g0._1sihfl60', 'type': 'text', 'default' : ""},
-        {'name': 'content', 'selector': 'span.tw-1r5dc8g0._60z0ev1', 'type': 'text', 'default' : ""},
-        {'name': 'nickname', 'selector': 'label.xdogm43 span.tw-1r5dc8g0', 'type': 'text', 'default' : ""},
+        {'name': 'content', 'selector': 'span.tw4k-1r5dc8g0._1sihfl60', 'type': 'text', 'default' : ""},
+        {'name': 'content', 'selector': 'span.tw4k-1r5dc8g0._60z0ev1', 'type': 'text', 'default' : ""},
+        {'name': 'nickname', 'selector': 'label.xdogm43 span.tw4k-1r5dc8g0', 'type': 'text', 'default' : ""},
         {'name': 'post_time', 'selector': 'time._1tvp9v40', 'type': 'attribute', 'attr': 'datetime', 'default' : ""},
-        {'name': 'ttabong', 'selector': 'span.tw-1r5dc8g0._3z3wnf1', 'type': 'text', 'default' : "0"},
+        {'name': 'ttabong', 'selector': 'span.tw4k-1r5dc8g0._3z3wnf1', 'type': 'text', 'default' : "0"},
         {'name': 'ZZal', 'selector': 'div.xdogm45 img', 'type': 'attribute', 'attr': 'src', 'default' : ""},
     ]
 

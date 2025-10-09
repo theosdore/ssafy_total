@@ -21,8 +21,11 @@
       {% if companyLst %}
           {% for fav in companyLst %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              <a href="{% url 'crawlings:find_codename'  %}" method = "GET">{{ fav.company_name }}</a>
-              <form action="{% url 'favorites:deleteFav' %}" method = "POST"> {% csrf_token %}  <button>즐겨찾기 삭제</button></form>
+              <a href="{% url 'crawlings:find_codename'  %}?company_name={{ fav.company_name }}" method = "GET">{{ fav.company_name }}</a>
+              <form action="{% url 'favorites:deleteFav' fav.id %}" method = "POST"> 
+                {% csrf_token %}  
+                <button>즐겨찾기 삭제</button>
+              </form>
             </li>
           {% endfor %}
       {% else %}

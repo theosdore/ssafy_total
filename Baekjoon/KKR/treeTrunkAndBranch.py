@@ -1,41 +1,29 @@
 import sys
-sys.stdin = open('input.txt')
+sys.stdin = open('ssafy_total\\Baekjoon\\KKR\\input.txt')
 
-
+from collections import deque
 N , R = map(int, input().split())
 
 branchs = [tuple(map(int, input().split())) for _ in range(N-1)]
-branchlst = [[] for _ in range(N)]
+branchlst = [[] for _ in range(N+1)]
 
 for i in range(N-1):
-    branchlst[branchs[i][0]].append((branchs[i][1], branchs[i][2]))
-    branchlst[branchs[i][1]].append((branchs[i][0], branchs[i][2]))
-print(branchlst)
+    branchlst[branchs[i][0]].append((branchs[i][0], branchs[i][1], branchs[i][2]))
+    branchlst[branchs[i][1]].append((branchs[i][1], branchs[i][0], branchs[i][2]))
 
-cumulativeValue = [0]*(N+1)
+stack = deque()
+stack.extend(branchlst[R])
+visited = [0]*(N+1)
+gigaN = 0
+while stack:
+    tempN = stack.popleft()
+    if not visited[tempN[1]] and tempN[1] != R :
+        stack.extend(branchlst[tempN[1]])
+        visited[tempN[1]] = visited[tempN[0]] + tempN[2]
+        if len(branchlst[tempN[1]]) >=3 and not gigaN:
+            gigaN = visited[tempN[1]]
+    
+if len(branchlst[R]) >= 3:
+    gigaN = 0
 
-stack = [R]
-stack.append(R)
-trunk = 0
-
-#
-# while stack:
-#     tempN = stack.pop()
-#     branchEA = 0
-#     for i in range(len(branchlst)):
-#         if cumulativeValue[branchlst[i][1]] == 0 and branchlst[i][0] == tempN:
-#             if branchlst[i][1] != R:
-#                 cumulativeValue[branchlst[i][1]] = cumulativeValue[branchlst[i][0]] + branchlst[i][2]
-#                 stack.append(branchlst[i][1])
-#                 branchEA += 1
-#         if cumulativeValue[branchlst[i][0]] == 0 and branchlst[i][1] == tempN:
-#             if branchlst[i][0] != R :
-#                 cumulativeValue[branchlst[i][0]] = cumulativeValue[tempN] + branchlst[i][2]
-#                 stack.append(branchlst[i][0])
-#                 branchEA += 1
-#     if branchEA >= 2 and trunk == 0:
-#         trunk = tempN
-# if trunk == 0:
-#     print(max(cumulativeValue), 0)
-# else:
-#     print(cumulativeValue[trunk], max(cumulativeValue)-cumulativeValue[trunk])
+print(gigaN, max(visited) - gigaN )

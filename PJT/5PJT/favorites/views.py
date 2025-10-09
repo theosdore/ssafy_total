@@ -88,7 +88,7 @@ def addFavCompany(request):
     companyName = ""
 
     tempBlocks = driver.find_element(
-        By.CSS_SELECTOR, "div._1sivumi0 span.tw-1r5dc8g0"
+        By.CSS_SELECTOR, "div._1sivumi0 span.tw4k-1r5dc8g0"
     )
     companyName = tempBlocks.text.strip()
     
@@ -104,10 +104,15 @@ def addFavCompany(request):
     return redirect("favorites:index")
 
 
-def deleteFav(request):
+def deleteFav(request, fav_id):
     if request.method == 'POST':
-        FavC = get_object_or_404(FavoriteCompany, nickname=request.user)
-        nickname = FavC.user.nickname
-        FavC.delete()
-
-    return redirect('favorites:index', nickname=nickname)
+        FavC = get_object_or_404(FavoriteCompany, pk=fav_id)
+        if FavC.nickname == request.user:
+            # 4. 객체 삭제
+            FavC.delete()
+            # messages.success(request, "즐겨찾기에서 삭제되었습니다.") # (선택) 성공 메시지
+        else:
+            # 권한이 없는 경우 처리
+            # messages.error(request, "삭제할 권한이 없습니다.")
+            pass
+    return redirect('favorites:index')
